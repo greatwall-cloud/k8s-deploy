@@ -1,6 +1,5 @@
-#在kylin上使用离线方式快速安装K8S v1.11.2以及greatwall-console v1.0.0
-
-##1、系统环境
+# 在kylin上使用离线方式快速安装K8S v1.11.2以及greatwall-console v1.0  
+## 1、系统环境
 ```
 系统版本
 kylin 4.0.2
@@ -12,18 +11,18 @@ k8s-master   172.16.4.27
 k8s-node1     172.16.4.28
 k8s-node2     172.16.4.29
 ```
-##2、准备工作(以下操作在三台机器中进行)
+## 2、准备工作(以下操作在三台机器中进行)
 
-###2.1 kylin 4.0.2
+### 2.1 kylin 4.0.2
 ```
      默认安装 略
 ```
-###2.2 配置主机名、IP地址
+### 2.2 配置主机名、IP地址
      配置主机名、IP地址，步骤略
 
      reboot
 
-###2.3 自动安装
+### 2.3 自动安装
 ```
       bash install.sh
       输入主节点IP或者外部访问域名地址，
@@ -40,14 +39,14 @@ k8s-node2     172.16.4.29
 ####   2.3.5 将安装文件根据之前输入的计算节点IP逐个传送安装文件到/tmp目录下
        自动安装，并且加入集群
 
-##3、kubernetes集群安装相关信息
+## 3、kubernetes集群安装相关信息
 ```
-      安装日志：$HOME/k8s.init.log
-      集群加入命令：$HOME/joink8s.sh
+安装日志：$HOME/k8s.init.log
+集群加入命令：$HOME/joink8s.sh
       gwconsole的登陆：（1）直接点执行命令gettoken
                        （2）$HOME/gwconsole-token.md
 ```
-##4、入门命令
+## 4、入门命令
       https://kubernetes.io/docs/home/
       http://docs.kubernetes.org.cn/
       略，请自行学习
