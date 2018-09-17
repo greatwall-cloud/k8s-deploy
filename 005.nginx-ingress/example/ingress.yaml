@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+#修改name和namespace
+  name: greatwall-console-ingress
+  namespace: kube-system
+spec:
+#无证书直接删除以下4行
+  tls:
+  - hosts:
+    - console.gwcloud.tk
+    secretName: ingress-secret
+#    - storage.gwcloud.tk
+  rules:
+  - host: console.gwcloud.tk
+    http:
+      paths:
+      - backend:
+          serviceName: greatwall-console
+          servicePort: 443
