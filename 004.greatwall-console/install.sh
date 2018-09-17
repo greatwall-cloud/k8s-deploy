@@ -3,15 +3,14 @@ cd $(dirname $0)
 # cert_dir="/opt/gwconsole/certs"
 hostip=`cat /tmp/masterIP.txt`
 #创建gwconsole证书
-if [ ! -d tls ] ; then 
-mkdir tls
-fi
+cert_dir="/opt/gwcloud-console-certs"
 
-cert_dir="tls"
-
-
+if [ ! -d $cert_dir ] ; then 
+mkdir /opt/greatwall-console-certs -p
 openssl genrsa -out $cert_dir/dashboard.key 1024
 openssl req -new -x509 -key $cert_dir/dashboard.key -out $cert_dir/dashboard.crt -subj "/C=ZH/L=beijing/O=gw/CN=$hostip"
+fi
+
 # 创建证书配置
 # kubectl create secret tls kubernetes-dashboard-certs --namespace=kube-system --key $cert_dir/dashboard.key --cert $cert_dir/dashboard.crt
  kubectl create secret generic greatwall-console-certs --namespace=kube-system --from-file="$cert_dir/dashboard.key,$cert_dir/dashboard.crt"
