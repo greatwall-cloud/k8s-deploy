@@ -37,7 +37,8 @@ do
 done
 
 
-
+cd $installdir/000.pre
+bash $installdir/000.pre/install.sh
 #install docker
 echo "Install docker now"
 cd $installdir/001.docker-ce_17

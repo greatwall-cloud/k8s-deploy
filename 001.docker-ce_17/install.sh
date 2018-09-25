@@ -3,7 +3,7 @@ cd $(dirname $0)
 #off swap
 swapoff -a
 sed -i '/ swap / s/^/#/' /etc/fstab
-#install crul
+#install curl
 dpkg -i libcurl3-gnutls_7.47.0-1ubuntu2.8_arm64.deb
 dpkg -i curl_7.47.0-1ubuntu2.8_arm64.deb
 
@@ -12,6 +12,8 @@ dpkg -i sshpass_1.05-1_arm64.deb
 #install bash-completion
 dpkg -i bash-completion_1%3a2.1-4.2ubuntu1.1_all.deb
 
+#https
+dpkg -i apt-transport-https_1.2.27_arm64.deb
 #install docker
 systemctl stop docker
 dpkg -i less_481-2.1ubuntu0.2_arm64.deb
@@ -24,8 +26,14 @@ dpkg -i git_1%3a2.7.4-0ubuntu1.4_arm64.deb
 dpkg -i netcat-traditional_1.10-41_arm64.deb
 dpkg -i netcat_1.10-41_all.deb
 dpkg -i ubuntu-fan_0.12.8~16.04.2_all.deb
-#https
-dpkg -i apt-transport-https_1.2.27_arm64.deb
+
+cat > /etc/docker/daemon.json <<EOF
+{
+  "registry-mirrors": ["https://docker.mirrors.ustc.edu.cn/"]
+}
+EOF
+sudo systemctl restart docker
+
 
 
 #dpkg -i apt-transport-https_1.6.2_all.deb
