@@ -12,6 +12,9 @@ dpkg -i sshpass_1.05-1_arm64.deb
 #install bash-completion
 dpkg -i bash-completion_1%3a2.1-4.2ubuntu1.1_all.deb
 
+#install ntp
+###########################
+
 #https
 dpkg -i apt-transport-https_1.2.27_arm64.deb
 #install docker
@@ -34,11 +37,26 @@ cat > /etc/docker/daemon.json <<EOF
 EOF
 sudo systemctl restart docker
 
+#change source
+cat > /etc/apt/sources.list <<EOF
+# 默认注释了源码仓库，如有需要可自行取消注释
+deb https://mirrors.ustc.edu.cn/ubuntu-ports/ xenial main restricted universe multiverse
+deb-src https://mirrors.ustc.edu.cn/ubuntu-ports/ xenial main main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu-ports/ xenial-updates main restricted universe multiverse
+deb-src https://mirrors.ustc.edu.cn/ubuntu-ports/ xenial-updates main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu-ports/ xenial-backports main restricted universe multiverse
+deb-src https://mirrors.ustc.edu.cn/ubuntu-ports/ xenial-backports main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu-ports/ xenial-security main restricted universe multiverse
+deb-src https://mirrors.ustc.edu.cn/ubuntu-ports/ xenial-security main restricted universe multiverse
+# 预发布软件源，不建议启用
+# deb https://mirrors.ustc.edu.cn/ubuntu-ports/ xenial-proposed main restricted universe multiverse
+# deb-src https://mirrors.ustc.edu.cn/ubuntu-ports/ xenial-proposed main restricted universe multiverse
+EOF
 
+#install ceph 
+wget -q -O- 'https://mirrors.aliyun.com/ceph/keys/release.asc' | sudo apt-key add -
+echo 'deb https://mirrors.aliyun.com/ceph/debian-jewel/ xenial main' > /etc/apt/sources.list.d/ceph.list
 
-#dpkg -i apt-transport-https_1.6.2_all.deb
-#dpkg -i aufs-tools_1%3a4.9+20170918-1ubuntu1_amd64.deb
-#dpkg -i cgroupfs-mount_1.4_all.deb
-#dpkg -i libltdl7_2.4.6-2_amd64.deb
-#dpkg -i pigz_2.4-1_amd64.deb
-#dpkg -i docker-ce_18.03.1~ce~3-0~ubuntu_amd64.deb
+#install kubernetes
+curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add - 
+echo 'deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main' > /etc/apt/sources.list.d/kubernetes.list

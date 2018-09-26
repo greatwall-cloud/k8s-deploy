@@ -13,7 +13,7 @@ metadata:
   name: default-http-backend
   labels:
     app: default-http-backend
-  namespace: app-nextcloud
+  namespace: ingress-nginx
 spec:
   replicas: 1
   selector:
@@ -53,7 +53,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: default-http-backend
-  namespace: app-nextcloud
+  namespace: ingress-nginx
   labels:
     app: default-http-backend
 spec:
@@ -68,7 +68,7 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: nginx-configuration
-  namespace: app-nextcloud
+  namespace: ingress-nginx
   labels:
     app: ingress-nginx
 ---
@@ -77,21 +77,21 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: tcp-services
-  namespace: app-nextcloud
+  namespace: ingress-nginx
 ---
 
 kind: ConfigMap
 apiVersion: v1
 metadata:
   name: udp-services
-  namespace: app-nextcloud
+  namespace: ingress-nginx
 ---
 
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: nginx-ingress-serviceaccount
-  namespace: app-nextcloud
+  namespace: ingress-nginx
 
 ---
 
@@ -153,7 +153,7 @@ apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: Role
 metadata:
   name: nginx-ingress-role
-  namespace: app-nextcloud
+  namespace: ingress-nginx
 rules:
   - apiGroups:
       - ""
@@ -196,7 +196,7 @@ apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
 metadata:
   name: nginx-ingress-role-nisa-binding
-  namespace: app-nextcloud
+  namespace: ingress-nginx
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -204,7 +204,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: nginx-ingress-serviceaccount
-    namespace: app-nextcloud
+    namespace: ingress-nginx
 
 ---
 
@@ -219,14 +219,14 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: nginx-ingress-serviceaccount
-    namespace: app-nextcloud
+    namespace: ingress-nginx
 ---
 
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: nginx-ingress-controller
-  namespace: app-nextcloud 
+  namespace: ingress-nginx 
 spec:
   replicas: 1
   selector:

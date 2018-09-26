@@ -1,12 +1,12 @@
 #!/bin/bash
-clean
+clear
 #获取当前目录的绝对路径
 cd $(dirname $0)
 installdir=`pwd`
 
 #为console登陆网址生成SSL证书，以便gwconsole能用chrome登陆
 echo "STEP 1:"
-read -p "输入本机IP或域名：" masterIP
+read -p "输入准备访问的console域名地址（如：console.gwcloud.tk）：" masterIP
 echo $masterIP > /tmp/masterIP.txt
 
 #输入每个节点，传输安装文件
@@ -37,8 +37,6 @@ do
 done
 
 
-cd $installdir/000.pre
-bash $installdir/000.pre/install.sh
 #install docker
 echo "Install docker now"
 cd $installdir/001.docker-ce_17
@@ -61,12 +59,12 @@ cd $installdir/003.kubeadm_init
 
 #install gwconsloe
 echo "Install greatwall console"
-cd $installdir/004.kubernetes-dashboard
-/bin/bash $installdir/004.kubernetes-dashboard/install.sh
+cd $installdir/004.greatwall-console
+/bin/bash $installdir/004.greatwall-console/install.sh
 
 #install ingress
-cd $installdir\k8s.v1.11.2-20180910\005.nginx-ingress\
-/bin/bash $installdir\k8s.v1.11.2-20180910\005.nginx-ingress\install_on_master.sh
+cd $installdir/k8s.v1.11.2-20180910/005.nginx-ingress/
+/bin/bash $installdir/k8s.v1.11.2-20180910/005.nginx-ingress/install_on_master.sh
 
 cd $installdir
 
@@ -81,4 +79,4 @@ echo "==========================================================="
 echo "更多kubernetes 集群添加信息请查看文件:"
 echo "                   $HOME/joink8s.sh"
 
-gettoken | tee $HOME/gwconsole-token.log
+gettoken 
