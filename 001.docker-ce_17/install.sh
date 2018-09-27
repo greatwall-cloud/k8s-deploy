@@ -32,7 +32,7 @@ dpkg -i ubuntu-fan_0.12.8~16.04.2_all.deb
 
 cat > /etc/docker/daemon.json <<EOF
 {
-  "registry-mirrors": ["https://docker.mirrors.ustc.edu.cn/"]
+  "registry-mirrors": ["https://36hvcnma.mirror.aliyuncs.com"]
 }
 EOF
 sudo systemctl restart docker
