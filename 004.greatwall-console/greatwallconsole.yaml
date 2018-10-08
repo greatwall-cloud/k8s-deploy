@@ -141,8 +141,8 @@ spec:
         # hostPath:
         #   path: /opt/gwconsole/certs
         #   type: Directory
-       secret:
-         secretName: greatwall-console-certs
+        secret:
+          secretName: greatwall-console-certs
       - name: tmp-volume
         emptyDir: {}
       serviceAccountName: greatwall-console
