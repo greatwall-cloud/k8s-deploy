@@ -6,7 +6,7 @@ hostip=`cat /tmp/masterIP.txt`
 cert_dir="/opt/gwcloud-console-certs"
 
 if [ ! -d $cert_dir ] ; then 
-mkdir /opt/greatwall-console-certs -p
+mkdir /opt/gwcloud-console-certs -p
 openssl genrsa -out $cert_dir/dashboard.key 1024
 openssl req -new -x509 -key $cert_dir/dashboard.key -out $cert_dir/dashboard.crt -subj "/C=ZH/L=beijing/O=gw/CN=$hostip"
 fi
@@ -16,7 +16,7 @@ fi
  kubectl create secret generic greatwall-console-certs --namespace=kube-system --from-file="$cert_dir/dashboard.key,$cert_dir/dashboard.crt"
 
 #gwclonsoel名字为"greatwall-console-arm64-v1.0.tar"
-docker load < greatwall-console-arm64-v1.0.tar
+docker load < *.tar
 
 
 kubectl apply -f greatwallconsole.yaml

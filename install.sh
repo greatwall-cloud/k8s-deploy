@@ -63,12 +63,12 @@ cd $installdir/004.greatwall-console
 /bin/bash $installdir/004.greatwall-console/install.sh
 
 #install ingress
-cd $installdir/k8s.v1.11.2-20180910/005.nginx-ingress/
-/bin/bash $installdir/k8s.v1.11.2-20180910/005.nginx-ingress/install_on_master.sh
+cd $installdir/005.nginx-ingress/
+/bin/bash $installdir/005.nginx-ingress/install_on_master.sh
 
 cd $installdir
 
-
+#如果输入过nodeIP，则开始安装计算节点
 if [ -s  /tmp/nodeIP.txt ] ; then
 /bin/bash per-node.sh
 fi

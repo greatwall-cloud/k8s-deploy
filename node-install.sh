@@ -21,10 +21,11 @@ cd $installdir/002.k8s.v1.11.2/k8s.master.v1.11.2
 
 #install gwconsloe
 echo "Install greatwall console"
-cd $installdir/004.kubernetes-dashboard
-docker load < $installdir/004.kubernetes-dashboard/greatwall-console-arm64-v1.0.tar
+cd $installdir/004.greatwall-console
+docker load < $installdir/004.greatwall-console/*.tar
 
 #install ingress
 echo "Install nginx-ingress"
-cd $installdir\005.nginx-ingress\
-/bin/bash $installdir\005.nginx-ingress\install_on_node.sh
+cd $installdir/005.nginx-ingress
+/bin/bash $installdir/005.nginx-ingress/install_on_node.sh
+

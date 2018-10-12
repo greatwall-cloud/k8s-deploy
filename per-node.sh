@@ -14,7 +14,7 @@ echo "正在传送安装文件到计算节点$i"
 
 scp -r $project_path $nodeIP:/tmp
 ssh $nodeIP bash /tmp/$currentdir/node-install.sh
-ssh $nodeIP bash $cmd
+ssh $nodeIP "$cmd"
 
 # sshpass -p $sshsec scp  -r  $project_path $sshuser@$i:/tmp
 # sshpass -p $sshsec ssh  $sshuser@$i bash /tmp/$currentdir/node-install.sh

@@ -1,5 +1,10 @@
 #!/bin/bash
 cd $(dirname $0)
+
+#添加DNS
+if [ -s  /etc/resolv.conf ] ; then
+echo "nameserver 114.114.114.114" > /etc/resolv.conf
+fi
 #off swap
 swapoff -a
 sed -i '/ swap / s/^/#/' /etc/fstab
@@ -58,5 +63,5 @@ wget -q -O- 'https://mirrors.aliyun.com/ceph/keys/release.asc' | sudo apt-key ad
 echo 'deb https://mirrors.aliyun.com/ceph/debian-jewel/ xenial main' > /etc/apt/sources.list.d/ceph.list
 
 #install kubernetes
-curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add - 
+curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add -
 echo 'deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main' > /etc/apt/sources.list.d/kubernetes.list
