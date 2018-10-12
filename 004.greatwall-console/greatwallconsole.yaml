@@ -19,14 +19,14 @@
 
 # ------------------- Dashboard Secret ------------------- #
 
-apiVersion: v1
-kind: Secret
-metadata:
- labels:
-   k8s-app: greatwall-console
- name: greatwall-console-certs
- namespace: kube-system
-type: Opaque
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#  labels:
+#    k8s-app: greatwall-console
+#  name: greatwall-console-certs
+#  namespace: kube-system
+# type: Opaque
 
 ---
 # ------------------- Dashboard Service Account ------------------- #
