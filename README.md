@@ -1,4 +1,4 @@
-# 在kylin上使用离线方式快速安装K8S v1.11.2以及greatwall-console v1.0  
+# 在kylin上使用离线方式快速安装K8S v1.11.2以及greatwall-console v1.1  
 ## 1、系统环境
 ```
 系统版本
