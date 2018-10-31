@@ -113,7 +113,7 @@ spec:
     spec:
       containers:
       - name: greatwall-console
-        image: greatwall-console-arm64:v1.0
+        image: greatwall-console-arm:v1.1
         ports:
         - containerPort: 8443
           protocol: TCP
